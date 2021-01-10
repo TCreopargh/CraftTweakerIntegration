@@ -5,6 +5,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.data.IData;
 import crafttweaker.mc1120.data.NBTConverter;
 import net.minecraft.nbt.JsonToNBT;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import stanhebben.zenscript.annotations.ZenClass;
@@ -12,8 +13,8 @@ import stanhebben.zenscript.annotations.ZenMethod;
 import xyz.tcreopargh.ctintegration.CTIntegrationMod;
 
 @ZenRegister
-@ZenClass(CTIntegrationMod.CT_NAMESPACE + "util.JSON")
-public class JSON {
+@ZenClass(CTIntegrationMod.CT_NAMESPACE + "util.DataUtil")
+public class DataUtil {
 
     @ZenMethod
     public static IData fromJSON(String jsonString) {
@@ -32,8 +33,8 @@ public class JSON {
     }
 
     @ZenMethod
-    public static String toJSON(IData data) {
-        return data.asString();
+    public static String toNBTString(IData data) {
+        return NBTConverter.from(data).toString();
     }
 
 }
