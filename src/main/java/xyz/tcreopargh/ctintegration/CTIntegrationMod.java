@@ -8,7 +8,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 @Mod(
         modid = CTIntegrationMod.MOD_ID,
         name = CTIntegrationMod.MOD_NAME,
-        version = CTIntegrationMod.VERSION
+        version = CTIntegrationMod.VERSION,
+        dependencies = "required-after:crafttweaker"
 )
 public class CTIntegrationMod {
 
