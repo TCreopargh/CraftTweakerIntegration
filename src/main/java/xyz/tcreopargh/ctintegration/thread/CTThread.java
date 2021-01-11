@@ -109,7 +109,7 @@ public class CTThread {
     }
 
     @ZenMethod
-    public boolean isInterrrupted() {
+    public boolean isInterrupted() {
         return internal.isInterrupted();
     }
 }
