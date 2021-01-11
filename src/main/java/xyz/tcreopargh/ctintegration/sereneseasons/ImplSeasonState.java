@@ -1,9 +1,11 @@
 package xyz.tcreopargh.ctintegration.sereneseasons;
 
-import crafttweaker.annotations.ModOnly;
-
 public class ImplSeasonState implements ISeasonState {
     private sereneseasons.api.season.ISeasonState internal;
+
+    public ImplSeasonState(sereneseasons.api.season.ISeasonState seasonState) {
+        this.internal = seasonState;
+    }
 
     public sereneseasons.api.season.ISeasonState getInternal() {
         return internal;
@@ -11,10 +13,6 @@ public class ImplSeasonState implements ISeasonState {
 
     public void setInternal(sereneseasons.api.season.ISeasonState internal) {
         this.internal = internal;
-    }
-
-    public ImplSeasonState(sereneseasons.api.season.ISeasonState seasonState) {
-        this.internal = seasonState;
     }
 
     @Override
