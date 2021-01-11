@@ -1,5 +1,6 @@
 package xyz.tcreopargh.ctintegration.scalinghealth;
 
+import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.world.IBlockPos;
 import crafttweaker.api.world.IWorld;
@@ -8,6 +9,7 @@ import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 import stanhebben.zenscript.annotations.ZenSetter;
 
+@ModOnly("scalinghealth")
 @ZenExpansion("crafttweaker.world.IWorld")
 @ZenRegister
 public class WorldExpansion {

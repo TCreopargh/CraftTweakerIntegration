@@ -1,11 +1,13 @@
 package xyz.tcreopargh.ctintegration.projecte;
 
+import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IItemStack;
 import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenSetter;
 
+@ModOnly("projecte")
 @ZenExpansion("crafttweaker.item.IItemStack")
 @ZenRegister
 public class IItemStackExpansion {

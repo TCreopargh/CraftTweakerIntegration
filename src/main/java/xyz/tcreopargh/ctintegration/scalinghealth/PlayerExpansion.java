@@ -1,5 +1,6 @@
 package xyz.tcreopargh.ctintegration.scalinghealth;
 
+import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.player.IPlayer;
 import stanhebben.zenscript.annotations.ZenExpansion;
@@ -7,6 +8,7 @@ import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenSetter;
 import xyz.tcreopargh.ctintegration.date.IDate;
 
+@ModOnly("scalinghealth")
 @ZenExpansion("crafttweaker.player.IPlayer")
 @ZenRegister
 public class PlayerExpansion {

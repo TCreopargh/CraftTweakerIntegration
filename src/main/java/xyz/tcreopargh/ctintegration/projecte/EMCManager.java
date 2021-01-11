@@ -61,4 +61,5 @@ public class EMCManager {
             ProjectEAPI.getEMCProxy().registerCustomEMC(stack, value);
         }
     }
+
 }

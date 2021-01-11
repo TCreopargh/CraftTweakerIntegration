@@ -1,9 +1,9 @@
 [
   {
     "modid": "ctintegration",
-    "name": "CraftTweaker integration",
+    "name": "CraftTweaker Integration",
     "description": "A CraftTweaker addon mod",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "mcversion": "1.12.2",
     "logoFile": "",
     "url": "",
