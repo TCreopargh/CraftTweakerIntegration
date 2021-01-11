@@ -15,7 +15,7 @@ public class FileManager {
 
     @ZenMethod
     public static String readFromFile(String relativePath, String charset) {
-        File file = new File(relativePath);
+        File file = new File("dumps/" + relativePath);
         if (!file.exists()) {
             CraftTweakerAPI.logError("File does not exist");
             return null;
@@ -49,7 +49,7 @@ public class FileManager {
 
     @ZenMethod
     public static boolean writeToFile(String relativePath, String content, String charset) {
-        File file = new File(relativePath);
+        File file = new File("dumps/" + relativePath);
         file.getParentFile().mkdirs();
         try (Writer writer = new OutputStreamWriter(new FileOutputStream(file), Charset.forName(charset))) {
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
