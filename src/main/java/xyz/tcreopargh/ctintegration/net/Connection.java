@@ -18,6 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
@@ -128,6 +129,11 @@ public class Connection {
 
     @ZenMethod
     public Connection post(IData data) {
+        return post(data, "UTF-8");
+    }
+
+    @ZenMethod
+    public Connection post(IData data, String charset) {
         if (!(data instanceof DataMap)) {
             CraftTweakerAPI.logError("post method only accepts a DataMap");
             return this;
@@ -137,9 +143,9 @@ public class Connection {
         for (Map.Entry<String, IData> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
             try {
-                postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+                postData.append(URLEncoder.encode(param.getKey(), charset));
                 postData.append('=');
-                postData.append(URLEncoder.encode(DataUtil.getRawString(param.getValue()), "UTF-8"));
+                postData.append(URLEncoder.encode(DataUtil.getRawString(param.getValue()), charset));
             } catch (UnsupportedEncodingException e) {
                 CraftTweakerAPI.logError(e.getMessage(), e);
             }
@@ -165,8 +171,13 @@ public class Connection {
 
     @ZenMethod
     public Connection writeString(String str) {
+        return writeString(str, "UTF-8");
+    }
+
+    @ZenMethod
+    public Connection writeString(String str, String charset) {
         try {
-            connection.getOutputStream().write(str.getBytes(StandardCharsets.UTF_8));
+            connection.getOutputStream().write(str.getBytes(Charset.forName(charset)));
         } catch (IOException e) {
             CraftTweakerAPI.logInfo(e.getMessage());
         }
