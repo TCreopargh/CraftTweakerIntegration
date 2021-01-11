@@ -64,13 +64,13 @@ public class CTThread {
     }
 
     @ZenMethod
-    public boolean isDeamon() {
+    public boolean isDaemon() {
         return internal.isDaemon();
     }
 
     @ZenMethod
-    public void setDeamon(boolean deamon) {
-        internal.setDaemon(deamon);
+    public void setDaemon(boolean daemon) {
+        internal.setDaemon(daemon);
     }
 
     @ZenMethod
