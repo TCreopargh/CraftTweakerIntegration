@@ -20,7 +20,7 @@ import java.util.Map;
 @ZenClass(CTIntegrationMod.CT_NAMESPACE + "util.RecipePattern")
 @ZenRegister
 public class RecipePattern {
-    private final List<String> pattern;
+    private final String[] pattern;
     private final Map<Character, IIngredient> mapping = new HashMap<>();
     private boolean isMirrored = false;
     private boolean isShapeless = false;
@@ -29,23 +29,23 @@ public class RecipePattern {
     private IRecipeFunction recipeFunction;
     private IRecipeAction recipeAction;
 
-    public RecipePattern(List<String> pattern) {
+    public RecipePattern(String[] pattern) {
         this.pattern = pattern;
     }
 
-    public RecipePattern(IItemStack output, List<String> pattern) {
+    public RecipePattern(IItemStack output, String[] pattern) {
         this.pattern = pattern;
         this.output = output;
     }
 
-    public RecipePattern(String name, IItemStack output, List<String> pattern) {
+    public RecipePattern(String name, IItemStack output, String[] pattern) {
         this.pattern = pattern;
         this.output = output;
         this.name = name;
     }
 
     @ZenMethod
-    public static RecipePattern init(List<String> recipePattern) {
+    public static RecipePattern init(String[] recipePattern) {
         return new RecipePattern(recipePattern);
     }
 
@@ -59,12 +59,12 @@ public class RecipePattern {
     }
 
     @ZenMethod
-    public static RecipePattern init(IItemStack output, List<String> recipePattern) {
+    public static RecipePattern init(IItemStack output, String[] recipePattern) {
         return new RecipePattern(output, recipePattern);
     }
 
     @ZenMethod
-    public static RecipePattern init(String name, IItemStack output, List<String> recipePattern) {
+    public static RecipePattern init(String name, IItemStack output, String[] recipePattern) {
         return new RecipePattern(name, output, recipePattern);
     }
 

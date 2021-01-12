@@ -7,6 +7,7 @@ import crafttweaker.mc1120.data.NBTConverter;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
+import org.apache.commons.lang3.StringEscapeUtils;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import xyz.tcreopargh.ctintegration.CTIntegrationMod;
@@ -75,7 +76,7 @@ public class DataUtil {
         } else if (data instanceof DataInt) {
             return String.valueOf(data.asInt());
         } else if (data instanceof DataString) {
-            return "\"" + data.asString() + "\"";
+            return "\"" + StringEscapeUtils.escapeJava(data.asString()) + "\"";
         } else if (data instanceof DataShort) {
             return String.valueOf(data.asShort());
         } else if (data instanceof DataLong) {
@@ -151,7 +152,7 @@ public class DataUtil {
                     result.append(", ");
                 }
 
-                result.append("\"").append((String) entry.getKey()).append("\"");
+                result.append("\"").append(StringEscapeUtils.escapeJava(entry.getKey())).append("\"");
 
                 result.append(": ");
                 result.append(toJson(entry.getValue()));

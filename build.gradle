@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'xyz.tcreopargh'
-version = '1.2.1'
+version = '1.2.2'
 archivesBaseName = 'ctintegration'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
@@ -75,6 +75,7 @@ dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2854'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'org.apache.commons:commons-text:1.9'
 
     // You may put jars on which you depend on in ./libs or you may define them like so..
     // compile "some.group:artifact:version:classifier"
