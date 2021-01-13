@@ -8,6 +8,8 @@ import xyz.tcreopargh.ctintegration.CTIntegrationMod;
 
 import java.io.*;
 import java.nio.charset.Charset;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -23,13 +25,14 @@ public class FileManager {
             "resources",
             "ctintegration",
             "crash-reports",
+            "crafttweaker_dump",
             "logs"
     );
 
     @ZenMethod
     public static String[] getFileList(String directoryPath) {
         if (!isAllowed(directoryPath)) {
-            CraftTweakerAPI.logError("You don't have permission to read or write in this path");
+            CraftTweakerAPI.logError("You don't have permission to read or write in this path: " + directoryPath);
             return null;
         }
         File directory = new File(directoryPath);
@@ -59,7 +62,7 @@ public class FileManager {
     @ZenMethod
     public static String readFromFile(String relativePath, String charset) {
         if (!isAllowed(relativePath)) {
-            CraftTweakerAPI.logError("You don't have permission to read or write this file");
+            CraftTweakerAPI.logError("You don't have permission to read or write this file: " + relativePath);
             return null;
         }
         File file = new File(relativePath);
@@ -81,7 +84,9 @@ public class FileManager {
             CraftTweakerAPI.logError(e.getMessage(), e);
             return null;
         }
-        return builder.toString();
+        String ret = builder.toString();
+        CraftTweakerAPI.logInfo("Read " + ret.getBytes().length + " bytes from file " + file.getPath() + " with charset " + charset);
+        return ret;
     }
 
     @ZenMethod
@@ -97,7 +102,7 @@ public class FileManager {
     @ZenMethod
     public static boolean writeToFile(String relativePath, String content, String charset) {
         if (!isAllowed(relativePath)) {
-            CraftTweakerAPI.logError("You don't have permission to read or write this file");
+            CraftTweakerAPI.logError("You don't have permission to read or write this file: " + relativePath);
             return false;
         }
         File file = new File(relativePath);
@@ -110,6 +115,7 @@ public class FileManager {
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
+            CraftTweakerAPI.logInfo("Written " + content.getBytes().length + " bytes to file " + file.getPath() + " with charset " + charset);
             return true;
         } catch (IOException e) {
             CraftTweakerAPI.logError(e.getMessage(), e);
@@ -120,10 +126,9 @@ public class FileManager {
     @ZenMethod
     public static boolean isAllowed(String path) {
         for (String directory : whitelistedDirectories) {
-            if (path.equals(directory)) {
-                return true;
-            }
-            if (path.startsWith(directory + "/") || path.startsWith(directory + "\\")) {
+            Path parent = Paths.get(directory).normalize();
+            Path child = Paths.get(path).normalize();
+            if (child.startsWith(parent)) {
                 return true;
             }
         }
@@ -142,7 +147,7 @@ public class FileManager {
     @ZenMethod
     public static boolean isDirectory(String relativePath) {
         if (!isAllowed(relativePath)) {
-            CraftTweakerAPI.logError("You don't have permission to read or write in this path");
+            CraftTweakerAPI.logError("You don't have permission to read or write in this path: " + relativePath);
             return false;
         }
         File file = new File(relativePath);
