@@ -85,7 +85,7 @@ public class FileManager {
             return null;
         }
         String ret = builder.toString();
-        CraftTweakerAPI.logInfo("Read " + ret.getBytes().length + " bytes from file " + file.getPath() + " with charset " + charset);
+        CraftTweakerAPI.logInfo("Read " + ret.getBytes(Charset.forName(charset)).length + " bytes from file " + file.getPath() + " with charset " + charset);
         return ret;
     }
 
@@ -115,7 +115,7 @@ public class FileManager {
                 bufferedWriter.newLine();
             }
             bufferedWriter.close();
-            CraftTweakerAPI.logInfo("Written " + content.getBytes().length + " bytes to file " + file.getPath() + " with charset " + charset);
+            CraftTweakerAPI.logInfo("Written " + content.getBytes(Charset.forName(charset)).length + " bytes to file " + file.getPath() + " with charset " + charset);
             return true;
         } catch (IOException e) {
             CraftTweakerAPI.logError(e.getMessage(), e);

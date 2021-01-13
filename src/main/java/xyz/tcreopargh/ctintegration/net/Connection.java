@@ -137,6 +137,7 @@ public class Connection {
             CraftTweakerAPI.logError("post method only accepts a DataMap");
             return this;
         }
+        CraftTweakerAPI.logInfo("Making post request to " + connection.getURL() + " ...");
         Map<String, IData> params = data.asMap();
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String, IData> param : params.entrySet()) {
@@ -149,6 +150,7 @@ public class Connection {
                 CraftTweakerAPI.logError(e.getMessage(), e);
             }
         }
+        CraftTweakerAPI.logInfo("Post successful to " + connection.getURL());
         return writeString(postData.toString());
     }
 
@@ -159,12 +161,14 @@ public class Connection {
         } catch (IOException e) {
             CraftTweakerAPI.logInfo(e.getMessage());
         }
+        CraftTweakerAPI.logInfo("Successfully connected to " + connection.getURL());
         return this;
     }
 
     @ZenMethod
     public Connection disconnect() {
         connection.disconnect();
+        CraftTweakerAPI.logInfo("Disconnected from " + connection.getURL());
         return this;
     }
 
@@ -177,6 +181,7 @@ public class Connection {
     public Connection writeString(String str, String charset) {
         try {
             connection.getOutputStream().write(str.getBytes(Charset.forName(charset)));
+            CraftTweakerAPI.logInfo("Written " + str.getBytes(Charset.forName(charset)).length + " bytes to " + connection.getURL());
         } catch (IOException e) {
             CraftTweakerAPI.logInfo(e.getMessage());
         }
@@ -201,15 +206,28 @@ public class Connection {
     }
 
     @ZenMethod
+    public String readToStringAndDisconnect(String charset) {
+        String ret = readToString(charset);
+        disconnect();
+        return ret;
+    }
+
+    @ZenMethod
     public String readToString() {
+        return readToString("UTF-8");
+    }
+
+    @ZenMethod
+    public String readToString(String charset) {
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream(), charset));
             StringBuilder output = new StringBuilder();
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 output.append(inputLine).append("\n");
             }
             output.setLength(Math.max(output.length() - 1, 0));
+            CraftTweakerAPI.logInfo("Read " + output.toString().getBytes().length + " bytes from " + connection.getURL());
             return output.toString();
 
         } catch (IOException e) {
