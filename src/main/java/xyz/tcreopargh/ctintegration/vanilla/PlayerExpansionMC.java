@@ -7,31 +7,20 @@ import crafttweaker.api.world.IBlockPos;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenGetter;
-import stanhebben.zenscript.annotations.ZenMethod;
+import stanhebben.zenscript.annotations.ZenSetter;
 
 @ZenExpansion("crafttweaker.player.IPlayer")
 @ZenRegister
 public class PlayerExpansionMC {
-    @ZenMethod
-    public static void addXPPoints(IPlayer player, int amount) {
-        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
-        mcPlayer.addExperience(amount);
-    }
 
-    @ZenMethod
-    public static void removeXPPoints(IPlayer player, int amount) {
-        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
-        mcPlayer.experienceTotal -= amount;
-    }
-
-    @ZenMethod
-    public static void setXPPoints(IPlayer player, int amount) {
+    @ZenSetter("xpPoints")
+    public static void setXPAmount(IPlayer player, int amount) {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         mcPlayer.experienceTotal = amount;
     }
 
-    @ZenMethod
-    public static int getXPPoints(IPlayer player) {
+    @ZenGetter("xpPoints")
+    public static int getXPAmount(IPlayer player) {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         return mcPlayer.experienceTotal;
     }
