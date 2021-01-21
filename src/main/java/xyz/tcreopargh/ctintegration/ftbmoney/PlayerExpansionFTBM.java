@@ -6,7 +6,6 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.player.IPlayer;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenExpansion;
-import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ModOnly("ftbmoney")
@@ -14,13 +13,13 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenRegister
 public class PlayerExpansionFTBM {
 
-    @ZenGetter("money")
+    @ZenMethod
     public static long getMoney(IPlayer player) {
         EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
         return FTBMoney.getMoney(mcPlayer);
     }
 
-    @ZenGetter("money")
+    @ZenMethod
     public static void setMoney(IPlayer player, long value) {
         EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
         FTBMoney.setMoney(mcPlayer, value);

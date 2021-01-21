@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
-import stanhebben.zenscript.annotations.ZenSetter;
 
 @ZenExpansion("crafttweaker.player.IPlayer")
 @ZenRegister
@@ -25,13 +24,13 @@ public class PlayerExpansionMC {
         mcPlayer.experienceTotal -= amount;
     }
 
-    @ZenSetter("xpPoints")
+    @ZenMethod
     public static void setXPPoints(IPlayer player, int amount) {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         mcPlayer.experienceTotal = amount;
     }
 
-    @ZenGetter("xpPoints")
+    @ZenMethod
     public static int getXPPoints(IPlayer player) {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         return mcPlayer.experienceTotal;
