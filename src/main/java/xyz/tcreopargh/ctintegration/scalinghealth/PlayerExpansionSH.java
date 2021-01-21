@@ -11,7 +11,7 @@ import xyz.tcreopargh.ctintegration.date.IDate;
 @ModOnly("scalinghealth")
 @ZenExpansion("crafttweaker.player.IPlayer")
 @ZenRegister
-public class PlayerExpansion {
+public class PlayerExpansionSH {
 
     @ZenGetter("difficulty")
     public static double getDifficulty(IPlayer player) {

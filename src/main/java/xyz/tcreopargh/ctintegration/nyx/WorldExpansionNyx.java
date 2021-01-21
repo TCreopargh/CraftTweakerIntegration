@@ -15,7 +15,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ModOnly("nyx")
 @ZenExpansion("crafttweaker.world.IWorld")
 @ZenRegister
-public class WorldExpansion {
+public class WorldExpansionNyx {
     @ZenMethod
     public static boolean isBloodMoon(IWorld world) {
         World mcWorld = (World) world.getInternal();

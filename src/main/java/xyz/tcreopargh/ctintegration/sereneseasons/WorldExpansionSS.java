@@ -11,7 +11,7 @@ import stanhebben.zenscript.annotations.ZenGetter;
 @ModOnly("sereneseasons")
 @ZenExpansion("crafttweaker.world.IWorld")
 @ZenRegister
-public class WorldExpansion {
+public class WorldExpansionSS {
     @ZenGetter("seasonState")
     public static ISeasonState getSeasonState(IWorld world) {
         World mcWorld = (World) world.getInternal();

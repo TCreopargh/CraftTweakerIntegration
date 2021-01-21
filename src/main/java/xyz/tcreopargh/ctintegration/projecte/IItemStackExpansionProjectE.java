@@ -10,7 +10,7 @@ import stanhebben.zenscript.annotations.ZenSetter;
 @ModOnly("projecte")
 @ZenExpansion("crafttweaker.item.IItemStack")
 @ZenRegister
-public class IItemStackExpansion {
+public class IItemStackExpansionProjectE {
 
     @ZenGetter("emc")
     public static long getEMC(IItemStack itemStack) {
