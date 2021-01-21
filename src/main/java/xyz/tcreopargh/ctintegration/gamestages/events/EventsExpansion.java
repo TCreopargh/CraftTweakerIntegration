@@ -1,6 +1,5 @@
 package xyz.tcreopargh.ctintegration.gamestages.events;
 
-import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.event.IEventHandle;
@@ -8,7 +7,6 @@ import crafttweaker.api.event.IEventManager;
 import crafttweaker.util.EventList;
 import crafttweaker.util.IEventHandler;
 import net.darkhax.gamestages.event.GameStageEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenMethod;
@@ -20,6 +18,8 @@ public class EventsExpansion {
 
     private static final EventList<CTGameStageAddEvent> stageAddEvents = new EventList<>();
     private static final EventList<CTGameStageRemoveEvent> stageRemoveEvents = new EventList<>();
+    private static final EventList<CTGameStageAddedEvent> stageAddedEvents = new EventList<>();
+    private static final EventList<CTGameStageRemovedEvent> stageRemovedEvents = new EventList<>();
     private static final EventList<CTGameStageClearedEvent> stageClearedEvents = new EventList<>();
 
     @ZenMethod
@@ -30,6 +30,16 @@ public class EventsExpansion {
     @ZenMethod
     public static IEventHandle onGameStageRemove(IEventManager manager, IEventHandler<CTGameStageRemoveEvent> event) {
         return stageRemoveEvents.add(event);
+    }
+
+    @ZenMethod
+    public static IEventHandle onGameStageAdded(IEventManager manager, IEventHandler<CTGameStageAddedEvent> event) {
+        return stageAddedEvents.add(event);
+    }
+
+    @ZenMethod
+    public static IEventHandle onGameStageRemoved(IEventManager manager, IEventHandler<CTGameStageRemovedEvent> event) {
+        return stageRemovedEvents.add(event);
     }
 
     @ZenMethod
@@ -50,6 +60,20 @@ public class EventsExpansion {
         public static void onGameStageRemove(GameStageEvent.Remove event) {
             if (stageRemoveEvents.hasHandlers()) {
                 stageRemoveEvents.publish(new CTGameStageRemoveEvent(event));
+            }
+        }
+
+        @SubscribeEvent
+        public static void onGameStageAdded(GameStageEvent.Added event) {
+            if (stageAddedEvents.hasHandlers()) {
+                stageAddedEvents.publish(new CTGameStageAddedEvent(event));
+            }
+        }
+
+        @SubscribeEvent
+        public static void onGameStageRemoved(GameStageEvent.Removed event) {
+            if (stageRemovedEvents.hasHandlers()) {
+                stageRemovedEvents.publish(new CTGameStageRemovedEvent(event));
             }
         }
 

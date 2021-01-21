@@ -14,25 +14,25 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class PlayerExpansionFTBM {
 
     @ZenMethod
-    public static long getMoney(IPlayer player) {
+    public static long getFTBMoney(IPlayer player) {
         EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
         return FTBMoney.getMoney(mcPlayer);
     }
 
     @ZenMethod
-    public static void setMoney(IPlayer player, long value) {
+    public static void setFTBMoney(IPlayer player, long value) {
         EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
         FTBMoney.setMoney(mcPlayer, value);
     }
 
     @ZenMethod
-    public static void addMoney(IPlayer player, long value) {
+    public static void addFTBMoney(IPlayer player, long value) {
         EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
         FTBMoney.setMoney(mcPlayer, FTBMoney.getMoney(mcPlayer) + value);
     }
 
     @ZenMethod
-    public static void removeMoney(IPlayer player, long value) {
+    public static void removeFTBMoney(IPlayer player, long value) {
         EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
         FTBMoney.setMoney(mcPlayer, FTBMoney.getMoney(mcPlayer) - value);
     }
