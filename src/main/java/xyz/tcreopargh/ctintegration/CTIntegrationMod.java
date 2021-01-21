@@ -1,9 +1,13 @@
 package xyz.tcreopargh.ctintegration;
 
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import xyz.tcreopargh.ctintegration.gamestages.events.EventsExpansion;
 
 @Mod(
         modid = CTIntegrationMod.MOD_ID,
@@ -18,7 +22,9 @@ public class CTIntegrationMod {
     public static final String MOD_NAME = "CraftTweaker Integration";
     public static final String VERSION = "1.4.0";
 
-    /** This is the instance of your mod as created by Forge. It will never be null. */
+    /**
+     * This is the instance of your mod as created by Forge. It will never be null.
+     */
     @Mod.Instance(MOD_ID)
     public static CTIntegrationMod INSTANCE;
 
@@ -26,6 +32,7 @@ public class CTIntegrationMod {
      * This is the first initialization event. Register tile entities here.
      * The registry events below will have fired prior to entry to this method.
      */
+
     @Mod.EventHandler
     public void preinit(FMLPreInitializationEvent event) {
 
@@ -44,6 +51,9 @@ public class CTIntegrationMod {
      */
     @Mod.EventHandler
     public void postinit(FMLPostInitializationEvent event) {
+        if (Loader.isModLoaded("gamestages")) {
+            MinecraftForge.EVENT_BUS.register(EventsExpansion.EventHandler.class);
+        }
 
     }
 }
