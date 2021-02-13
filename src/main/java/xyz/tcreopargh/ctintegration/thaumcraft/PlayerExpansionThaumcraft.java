@@ -44,7 +44,7 @@ public class PlayerExpansionThaumcraft {
         ThaumcraftCapabilities.getWarp(CraftTweakerMC.getPlayer(player)).set(IPlayerWarp.EnumWarpType.TEMPORARY, amount);
     }
 
-    @ZenSetter("thaumcraftKnowledge")
+    @ZenGetter("thaumcraftKnowledge")
     public static IPlayerKnowledge getThaumcraftKnowledge(IPlayer player) {
         return new ImplPlayerKnowledge(ThaumcraftCapabilities.getKnowledge(CraftTweakerMC.getPlayer(player)));
     }
