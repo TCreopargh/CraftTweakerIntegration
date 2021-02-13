@@ -8,5 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Thaumcraft-1.12.2-6.1.BETA26" level="project" />
+    <orderEntry type="library" name="BloodMagic-1.12.2-2.4.3-105" level="project" />
+    <orderEntry type="library" name="CraftTweaker2-1.12-4.1.20.617" level="project" />
   </component>
 </module>

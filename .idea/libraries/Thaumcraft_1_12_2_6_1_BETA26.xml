@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Thaumcraft-1.12.2-6.1.BETA26">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/Thaumcraft-1.12.2-6.1.BETA26.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

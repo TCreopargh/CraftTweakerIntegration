@@ -3,10 +3,8 @@ package xyz.tcreopargh.ctintegration.vanilla;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
-import crafttweaker.api.world.IBlockPos;
 import net.minecraft.entity.player.EntityPlayer;
 import stanhebben.zenscript.annotations.ZenExpansion;
-import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 @ZenExpansion("crafttweaker.player.IPlayer")
@@ -40,11 +38,4 @@ public class PlayerExpansionMC {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         return mcPlayer.experienceTotal;
     }
-
-    @ZenGetter
-    public static IBlockPos getBedLocation(IPlayer player) {
-        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
-        return CraftTweakerMC.getIBlockPos(mcPlayer.getBedLocation());
-    }
-
 }
