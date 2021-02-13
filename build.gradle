@@ -12,7 +12,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 
 group = 'xyz.tcreopargh'
-version = '1.5.0'
+version = '1.5.1'
 archivesBaseName = 'ctintegration'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
