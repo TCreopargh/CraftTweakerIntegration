@@ -2,6 +2,7 @@ package xyz.tcreopargh.ctintegration.nyx;
 
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.world.IWorld;
 import de.ellpeck.nyx.capabilities.NyxWorld;
 import de.ellpeck.nyx.lunarevents.BloodMoon;
@@ -18,25 +19,25 @@ import stanhebben.zenscript.annotations.ZenMethod;
 public class WorldExpansionNyx {
     @ZenMethod
     public static boolean isBloodMoon(IWorld world) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         NyxWorld data = NyxWorld.get(mcWorld);
         return data.currentEvent instanceof BloodMoon;
     }
     @ZenMethod
     public static boolean isStarShower(IWorld world) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         NyxWorld data = NyxWorld.get(mcWorld);
         return data.currentEvent instanceof StarShower;
     }
     @ZenMethod
     public static boolean isFullMoon(IWorld world) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         NyxWorld data = NyxWorld.get(mcWorld);
         return data.currentEvent instanceof FullMoon;
     }
     @ZenMethod
     public static boolean isHarvestMoon(IWorld world) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         NyxWorld data = NyxWorld.get(mcWorld);
         return data.currentEvent instanceof HarvestMoon;
     }

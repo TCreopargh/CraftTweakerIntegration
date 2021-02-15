@@ -3,6 +3,7 @@ package xyz.tcreopargh.ctintegration.data;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.data.*;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.mc1120.data.NBTConverter;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
@@ -37,7 +38,7 @@ public class DataUtil {
 
     @ZenMethod
     public static String toNBTString(IData data) {
-        return NBTConverter.from(data).toString();
+        return CraftTweakerMC.getNBT(data).toString();
     }
 
     @ZenMethod

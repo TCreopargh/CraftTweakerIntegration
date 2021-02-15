@@ -2,6 +2,7 @@ package xyz.tcreopargh.ctintegration.sereneseasons;
 
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.world.IWorld;
 import net.minecraft.world.World;
 import sereneseasons.api.season.SeasonHelper;
@@ -14,7 +15,7 @@ import stanhebben.zenscript.annotations.ZenGetter;
 public class WorldExpansionSS {
     @ZenGetter("seasonState")
     public static ISeasonState getSeasonState(IWorld world) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         sereneseasons.api.season.ISeasonState state = SeasonHelper.getSeasonState(mcWorld);
         return new ImplSeasonState(state);
     }

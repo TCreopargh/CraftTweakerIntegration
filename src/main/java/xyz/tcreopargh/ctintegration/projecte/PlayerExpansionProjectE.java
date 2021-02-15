@@ -2,6 +2,7 @@ package xyz.tcreopargh.ctintegration.projecte;
 
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
 import moze_intel.projecte.api.ProjectEAPI;
 import moze_intel.projecte.api.capabilities.IKnowledgeProvider;
@@ -17,7 +18,7 @@ public class PlayerExpansionProjectE {
 
     @ZenGetter("personalEMC")
     public static long getPersonalEMC(IPlayer player) {
-        EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         IKnowledgeProvider iKnowledgeProvider = mcPlayer.getCapability(ProjectEAPI.KNOWLEDGE_CAPABILITY, null);
         if (iKnowledgeProvider == null) {
             return 0;
@@ -27,7 +28,7 @@ public class PlayerExpansionProjectE {
 
     @ZenSetter("personalEMC")
     public static void setPersonalEMC(IPlayer player, long emc) {
-        EntityPlayer mcPlayer = (EntityPlayer) player.getInternal();
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         IKnowledgeProvider iKnowledgeProvider = mcPlayer.getCapability(ProjectEAPI.KNOWLEDGE_CAPABILITY, null);
         if (iKnowledgeProvider != null) {
             iKnowledgeProvider.setEmc(emc);

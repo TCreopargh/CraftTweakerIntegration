@@ -3,6 +3,7 @@ package xyz.tcreopargh.ctintegration.scalinghealth;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
 import crafttweaker.api.world.IBlockPos;
 import crafttweaker.api.world.IWorld;
@@ -27,7 +28,7 @@ public class DifficultyManager {
 
     @ZenMethod
     public static void setDifficulty(IPlayer player, double value) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
+        EntityPlayer entPlayer = CraftTweakerMC.getPlayer(player);
         if (SHPlayerDataHandler.get(entPlayer) != null) {
             Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).setDifficulty(value);
         } else {
@@ -37,7 +38,7 @@ public class DifficultyManager {
 
     @ZenMethod
     public static void addDifficulty(IPlayer player, double value) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
+        EntityPlayer entPlayer = CraftTweakerMC.getPlayer(player);
         if (SHPlayerDataHandler.get(entPlayer) != null) {
             Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).incrementDifficulty(value);
         } else {
@@ -47,7 +48,7 @@ public class DifficultyManager {
 
     @ZenMethod
     public static void addDifficulty(IPlayer player, double value, boolean affectWorldDifficulty) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
+        EntityPlayer entPlayer = CraftTweakerMC.getPlayer(player);
         if (SHPlayerDataHandler.get(entPlayer) != null) {
             Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).incrementDifficulty(value, affectWorldDifficulty);
         } else {
@@ -57,7 +58,7 @@ public class DifficultyManager {
 
     @ZenMethod
     public static double getDifficulty(IPlayer player) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
+        EntityPlayer entPlayer = CraftTweakerMC.getPlayer(player);
         double val = Double.NaN;
         if (SHPlayerDataHandler.get(entPlayer) != null) {
             val = Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).getDifficulty();
@@ -69,30 +70,30 @@ public class DifficultyManager {
 
     @ZenMethod
     public static double getWorldDifficulty(IWorld world) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         ScalingHealthSavedData data = ScalingHealthSavedData.get(mcWorld);
         return data.difficulty;
     }
 
     @ZenMethod
     public static void setWorldDifficulty(IWorld world, double value) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         ScalingHealthSavedData data = ScalingHealthSavedData.get(mcWorld);
         data.difficulty = value;
     }
 
     @ZenMethod
     public static void addWorldDifficulty(IWorld world, double value) {
-        World mcWorld = (World) world.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
         ScalingHealthSavedData data = ScalingHealthSavedData.get(mcWorld);
         data.difficulty += value;
     }
 
     @ZenMethod
     public static IDate getLastTimePlayed(IPlayer player) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
-        if (SHPlayerDataHandler.get(entPlayer) != null) {
-            return new ImplDate(Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).getLastTimePlayed());
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        if (SHPlayerDataHandler.get(mcPlayer) != null) {
+            return new ImplDate(Objects.requireNonNull(SHPlayerDataHandler.get(mcPlayer)).getLastTimePlayed());
         } else {
             CraftTweakerAPI.logInfo("cannot get last time played because the player's scaling health data is null");
         }
@@ -101,9 +102,9 @@ public class DifficultyManager {
 
     @ZenMethod
     public static float getMaxHealth(IPlayer player) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
-        if (SHPlayerDataHandler.get(entPlayer) != null) {
-            return Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).getMaxHealth();
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        if (SHPlayerDataHandler.get(mcPlayer) != null) {
+            return Objects.requireNonNull(SHPlayerDataHandler.get(mcPlayer)).getMaxHealth();
         } else {
             CraftTweakerAPI.logInfo("cannot get max health because the player's scaling health data is null");
         }
@@ -112,9 +113,9 @@ public class DifficultyManager {
 
     @ZenMethod
     public static void setMaxHealth(IPlayer player, float value) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
-        if (SHPlayerDataHandler.get(entPlayer) != null) {
-            Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).setMaxHealth(value);
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        if (SHPlayerDataHandler.get(mcPlayer) != null) {
+            Objects.requireNonNull(SHPlayerDataHandler.get(mcPlayer)).setMaxHealth(value);
         } else {
             CraftTweakerAPI.logInfo("cannot set max health because the player's scaling health data is null");
         }
@@ -122,9 +123,9 @@ public class DifficultyManager {
 
     @ZenMethod
     public static void addMaxHealth(IPlayer player, float value) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
-        if (SHPlayerDataHandler.get(entPlayer) != null) {
-            Objects.requireNonNull(SHPlayerDataHandler.get(entPlayer)).incrementMaxHealth(value);
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        if (SHPlayerDataHandler.get(mcPlayer) != null) {
+            Objects.requireNonNull(SHPlayerDataHandler.get(mcPlayer)).incrementMaxHealth(value);
         } else {
             CraftTweakerAPI.logInfo("cannot add max health because the player's scaling health data is null");
         }
@@ -132,14 +133,14 @@ public class DifficultyManager {
 
     @ZenMethod
     public static double getAreaDifficulty(IPlayer player) {
-        EntityPlayer entPlayer = (EntityPlayer) player.getInternal();
-        return Config.Difficulty.AREA_DIFFICULTY_MODE.getAreaDifficulty(entPlayer.world, entPlayer.getPosition());
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        return Config.Difficulty.AREA_DIFFICULTY_MODE.getAreaDifficulty(mcPlayer.world, mcPlayer.getPosition());
     }
 
     @ZenMethod
     public static double getAreaDifficulty(IWorld world, IBlockPos pos) {
-        World mcWorld = (World) world.getInternal();
-        BlockPos mcBlockPos = (BlockPos) pos.getInternal();
+        World mcWorld = CraftTweakerMC.getWorld(world);
+        BlockPos mcBlockPos = CraftTweakerMC.getBlockPos(pos);
         return Config.Difficulty.AREA_DIFFICULTY_MODE.getAreaDifficulty(mcWorld, mcBlockPos);
     }
 }

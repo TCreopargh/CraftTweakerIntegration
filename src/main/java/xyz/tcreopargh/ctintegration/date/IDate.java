@@ -81,4 +81,5 @@ public interface IDate {
     void setMilliSecond(int value);
 
     Object getInternal();
+
 }
