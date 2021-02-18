@@ -10,6 +10,7 @@ import java.math.RoundingMode;
 
 /**
  * Credit to <a href="https://github.com/SleepyTrousers/EnderIO">EnderIO</a> for writing all of the code below.
+ *
  * @see <a href="https://github.com/SleepyTrousers/EnderIO/blob/master/enderio-base/src/main/java/crazypants/enderio/base/xp/XpUtil.java">XpUtil</a>
  */
 public class XPUtil {

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="ContentTweaker-1.12.2-4.9.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/ContentTweaker-1.12.2-4.9.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/Baubles-1.12-1.5.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
