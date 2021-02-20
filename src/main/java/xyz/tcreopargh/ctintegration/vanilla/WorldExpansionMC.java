@@ -4,6 +4,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.util.Position3f;
 import crafttweaker.api.world.IWorld;
+import net.minecraft.advancements.Advancement;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -30,8 +31,7 @@ public class WorldExpansionMC {
         mcWorld.playSound(location.getX(), location.getY(), location.getZ(),
                 Objects.requireNonNull(SoundEvent.REGISTRY.getObject(
                         new ResourceLocation(soundResourceLocation))),
-                SoundCategory.valueOf(soundCategory),
+                SoundCategory.getByName(soundCategory),
                 volume, pitch, distanceDelay);
     }
-
 }

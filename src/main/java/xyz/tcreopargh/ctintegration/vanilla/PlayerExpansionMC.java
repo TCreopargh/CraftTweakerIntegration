@@ -1,10 +1,18 @@
 package xyz.tcreopargh.ctintegration.vanilla;
 
+import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
+import crafttweaker.api.util.Position3f;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementProgress;
+import net.minecraft.command.AdvancementCommand;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.play.server.SPacketCustomSound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenGetter;
@@ -46,5 +54,36 @@ public class PlayerExpansionMC {
         mcPlayer.playSound(Objects.requireNonNull(SoundEvent.REGISTRY.getObject(
                 new ResourceLocation(soundResourceLocation))), volume, pitch
         );
+    }
+
+    @ZenMethod
+    public static void sendPlaySoundPacket(IPlayer player, String soundResourceLocation, String soundCategory, Position3f pos, float volume, float pitch) {
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        if (mcPlayer instanceof EntityPlayerMP) {
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) mcPlayer;
+            entityPlayerMP.connection.sendPacket(
+                    new SPacketCustomSound(soundResourceLocation, SoundCategory.getByName(soundCategory),
+                            pos.getX(), pos.getY(), pos.getZ(), volume, pitch));
+        } else {
+            CraftTweakerAPI.logInfo("Failed to send play sound packet. Player is not an EntityPlayerMP");
+        }
+    }
+
+    @ZenMethod
+    public static boolean isPlayerMP(IPlayer player) {
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        return mcPlayer instanceof EntityPlayerMP;
+    }
+
+    @ZenMethod
+    public static IAdvancementProgress getAdvancementProgress(IPlayer player, IAdvancement advancement) {
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        Advancement mcAdvancement = (Advancement) advancement.getInternal();
+        if (mcPlayer instanceof EntityPlayerMP) {
+            EntityPlayerMP entityPlayerMP = (EntityPlayerMP) mcPlayer;
+            return new ImplAdvancementProgress(entityPlayerMP.getAdvancements().getProgress(mcAdvancement));
+        } else {
+            return null;
+        }
     }
 }

@@ -1,32 +1,29 @@
 package xyz.tcreopargh.ctintegration;
 
-import com.teamacronymcoders.contenttweaker.ContentTweaker;
-import com.teamacronymcoders.contenttweaker.api.ContentTweakerAPI;
 import crafttweaker.CraftTweakerAPI;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import xyz.tcreopargh.ctintegration.cot.BaubleEventHandler;
 import xyz.tcreopargh.ctintegration.cot.BaubleItemRepresentation;
-import xyz.tcreopargh.ctintegration.cot.BaubleVanillaFactoryExpansion;
 import xyz.tcreopargh.ctintegration.gamestages.events.EventsExpansion;
 
 @Mod(
         modid = CTIntegrationMod.MOD_ID,
         name = CTIntegrationMod.MOD_NAME,
         version = CTIntegrationMod.VERSION,
-        dependencies = "required-after:crafttweaker"
+        dependencies = CTIntegrationMod.DEPENDENCIES
 )
 public class CTIntegrationMod {
 
     public static final String CT_NAMESPACE = "mods.ctintegration.";
     public static final String MOD_ID = "ctintegration";
     public static final String MOD_NAME = "CraftTweaker Integration";
-    public static final String VERSION = "1.6.0";
+    public static final String VERSION = "1.7.0";
+    public static final String DEPENDENCIES = "required-after:crafttweaker";
 
     /**
      * This is the instance of your mod as created by Forge. It will never be null.

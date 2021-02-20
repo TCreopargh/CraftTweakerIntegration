@@ -9,5 +9,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="base-1.12.2-3.13.0" level="project" />
+    <orderEntry type="library" name="TConstruct-1.12.2-2.13.0.183" level="project" />
   </component>
 </module>
