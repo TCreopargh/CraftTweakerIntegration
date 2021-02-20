@@ -26,7 +26,7 @@ public class AdvancementHelper {
     }
 
     @ZenMethod
-    public static List<IAdvancement> getAdvancements(IServer server, String id) {
+    public static List<IAdvancement> getAdvancements(IServer server) {
         AdvancementManager manager = CraftTweakerMC.getMCServer(server).getAdvancementManager();
         List<IAdvancement> advancements = new ArrayList<>();
         manager.getAdvancements().forEach(advancement -> advancements.add(new ImplAdvancement(advancement)));
