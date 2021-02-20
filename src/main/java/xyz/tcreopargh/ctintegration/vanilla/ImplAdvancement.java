@@ -76,6 +76,9 @@ public class ImplAdvancement implements IAdvancement {
 
     @Override
     public IAdvancement getParent() {
+        if(internal.getParent() == null) {
+            return null;
+        }
         return new ImplAdvancement(internal.getParent());
     }
 
