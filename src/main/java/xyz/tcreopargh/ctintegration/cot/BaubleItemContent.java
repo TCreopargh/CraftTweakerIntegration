@@ -12,7 +12,7 @@ public class BaubleItemContent extends ItemContent implements IBauble {
     private final BaubleType baubleType;
 
     private final BaubleEventHandler.CanEquip canEquip;
-    private final BaubleEventHandler.CanUnequip canUneuip;
+    private final BaubleEventHandler.canUnequip canUneuip;
     private final BaubleEventHandler.OnWornTick onWornTick;
     private final BaubleEventHandler.OnEquipped onEquipped;
     private final BaubleEventHandler.OnUnequipped onUnequipped;

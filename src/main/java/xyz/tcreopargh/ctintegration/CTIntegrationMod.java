@@ -22,7 +22,7 @@ public class CTIntegrationMod {
     public static final String CT_NAMESPACE = "mods.ctintegration.";
     public static final String MOD_ID = "ctintegration";
     public static final String MOD_NAME = "CraftTweaker Integration";
-    public static final String VERSION = "1.7.1";
+    public static final String VERSION = "1.7.2";
     public static final String DEPENDENCIES = "required-after:crafttweaker";
 
     /**
@@ -46,7 +46,7 @@ public class CTIntegrationMod {
             CraftTweakerAPI.registerClass(BaubleEventHandler.GetBaubleType.class);
             CraftTweakerAPI.registerClass(BaubleEventHandler.OnWornTick.class);
             CraftTweakerAPI.registerClass(BaubleEventHandler.CanEquip.class);
-            CraftTweakerAPI.registerClass(BaubleEventHandler.CanUnequip.class);
+            CraftTweakerAPI.registerClass(BaubleEventHandler.canUnequip.class);
             CraftTweakerAPI.registerClass(BaubleEventHandler.OnEquipped.class);
             CraftTweakerAPI.registerClass(BaubleEventHandler.OnUnequipped.class);
             CraftTweakerAPI.registerClass(BaubleEventHandler.WillAutoSync.class);

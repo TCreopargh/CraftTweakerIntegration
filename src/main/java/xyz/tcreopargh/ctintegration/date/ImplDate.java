@@ -15,6 +15,11 @@ public class ImplDate implements IDate {
         internal = calendar;
     }
 
+    public ImplDate(Long timeInMillis) {
+        internal = Calendar.getInstance();
+        internal.setTimeInMillis(timeInMillis);
+    }
+
     @Override
     public long getTimeInMillis() {
         return internal.getTimeInMillis();

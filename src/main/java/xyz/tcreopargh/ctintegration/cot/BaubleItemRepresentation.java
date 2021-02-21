@@ -16,7 +16,7 @@ public class BaubleItemRepresentation extends ItemRepresentation {
     @ZenProperty
     public BaubleEventHandler.CanEquip canEquip;
     @ZenProperty
-    public BaubleEventHandler.CanUnequip canUnequip;
+    public BaubleEventHandler.canUnequip canUnequip;
     @ZenProperty
     public BaubleEventHandler.OnWornTick onWornTick;
     @ZenProperty
