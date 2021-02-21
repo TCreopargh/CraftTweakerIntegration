@@ -41,6 +41,9 @@ public class ServerExpansionMC {
     public static IPlayer getPlayerByUsername(IServer server, String name) {
         MinecraftServer mcServer = CraftTweakerMC.getMCServer(server);
         EntityPlayer mcPlayer = mcServer.getPlayerList().getPlayerByUsername(name);
+        if(mcPlayer == null) {
+            return null;
+        }
         return CraftTweakerMC.getIPlayer(mcPlayer);
     }
 
