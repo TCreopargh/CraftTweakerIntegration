@@ -1,4 +1,4 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.expansion;
 
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.annotations.ZenRegister;
@@ -16,6 +16,9 @@ import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenGetter;
 import stanhebben.zenscript.annotations.ZenMethod;
 import xyz.tcreopargh.ctintegration.modutil.XPUtil;
+import xyz.tcreopargh.ctintegration.vanilla.advancement.AdvancementProgressImpl;
+import xyz.tcreopargh.ctintegration.vanilla.advancement.IAdvancement;
+import xyz.tcreopargh.ctintegration.vanilla.advancement.IAdvancementProgress;
 
 import java.util.Objects;
 
@@ -59,11 +62,16 @@ public class PlayerExpansionMC {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         if (mcPlayer instanceof EntityPlayerMP) {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) mcPlayer;
-            entityPlayerMP.connection.sendPacket(
-                    new SPacketCustomSound(soundResourceLocation, SoundCategory.getByName(soundCategory),
-                            pos.getX(), pos.getY(), pos.getZ(), volume, pitch));
+            SoundCategory category = SoundCategory.getByName(soundCategory);
+            if(category != null) {
+                entityPlayerMP.connection.sendPacket(
+                        new SPacketCustomSound(soundResourceLocation, category,
+                                pos.getX(), pos.getY(), pos.getZ(), volume, pitch));
+            } else {
+                CraftTweakerAPI.logWarning("Failed to send play sound packet. soundCategory is invalid.");
+            }
         } else {
-            CraftTweakerAPI.logInfo("Failed to send play sound packet. Player is not an EntityPlayerMP");
+            CraftTweakerAPI.logInfo("Failed to send play sound packet. Player is not an instance of EntityPlayerMP");
         }
     }
 
@@ -79,7 +87,7 @@ public class PlayerExpansionMC {
         Advancement mcAdvancement = (Advancement) advancement.getInternal();
         if (mcPlayer instanceof EntityPlayerMP) {
             EntityPlayerMP entityPlayerMP = (EntityPlayerMP) mcPlayer;
-            return new ImplAdvancementProgress(entityPlayerMP.getAdvancements().getProgress(mcAdvancement));
+            return new AdvancementProgressImpl(entityPlayerMP.getAdvancements().getProgress(mcAdvancement));
         } else {
             return null;
         }

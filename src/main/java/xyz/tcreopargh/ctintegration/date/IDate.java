@@ -8,6 +8,11 @@ import xyz.tcreopargh.ctintegration.CTIntegrationMod;
 @ZenClass(CTIntegrationMod.CT_NAMESPACE + "date.IDate")
 public interface IDate {
 
+    @ZenMethod
+    static IDate getInstance() {
+        return new CalendarDate();
+    }
+
     @ZenGetter("timeInMillis")
     long getTimeInMillis();
 

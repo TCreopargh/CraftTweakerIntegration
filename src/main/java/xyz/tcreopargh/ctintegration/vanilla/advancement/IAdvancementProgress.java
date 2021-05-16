@@ -1,4 +1,4 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.advancement;
 
 import crafttweaker.annotations.ZenRegister;
 import stanhebben.zenscript.annotations.ZenClass;

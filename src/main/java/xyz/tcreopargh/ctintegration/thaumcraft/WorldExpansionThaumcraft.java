@@ -71,4 +71,11 @@ public class WorldExpansionThaumcraft {
         BlockPos mcBlockPos = CraftTweakerMC.getBlockPos(pos);
         return AuraHandler.getTotalAura(mcWorld, mcBlockPos);
     }
+
+    @ZenMethod
+    public static void addAura(IWorld world, IBlockPos pos, short base, float vis, float flux) {
+        World mcWorld = CraftTweakerMC.getWorld(world);
+        BlockPos mcBlockPos = CraftTweakerMC.getBlockPos(pos);
+        AuraHandler.addAuraChunk(world.getDimension(), mcWorld.getChunk(mcBlockPos), base, vis, flux);
+    }
 }

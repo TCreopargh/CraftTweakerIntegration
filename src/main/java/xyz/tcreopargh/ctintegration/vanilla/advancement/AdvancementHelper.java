@@ -1,4 +1,4 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.advancement;
 
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
@@ -21,7 +21,7 @@ public class AdvancementHelper {
         if (manager.getAdvancement(new ResourceLocation(id)) == null) {
             return null;
         } else {
-            return new ImplAdvancement(manager.getAdvancement(new ResourceLocation(id)));
+            return new AdvancementImpl(manager.getAdvancement(new ResourceLocation(id)));
         }
     }
 
@@ -29,7 +29,7 @@ public class AdvancementHelper {
     public static List<IAdvancement> getAdvancements(IServer server) {
         AdvancementManager manager = CraftTweakerMC.getMCServer(server).getAdvancementManager();
         List<IAdvancement> advancements = new ArrayList<>();
-        manager.getAdvancements().forEach(advancement -> advancements.add(new ImplAdvancement(advancement)));
+        manager.getAdvancements().forEach(advancement -> advancements.add(new AdvancementImpl(advancement)));
         return advancements;
     }
 }

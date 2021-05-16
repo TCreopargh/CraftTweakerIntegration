@@ -27,7 +27,8 @@ public class XPUtil {
     }
 
     private static long calculateXPfromLevelHigh(int level) {
-        return -158L * (level + 1L) + termial(level - 1) * 9L; // correct in long, but offset by LVLOFFSET32
+        // correct in long, but offset by LVLOFFSET32
+        return -158L * (level + 1L) + termial(level - 1) * 9L;
     }
 
     private static long calculateXPfromLevelLow(int level) {

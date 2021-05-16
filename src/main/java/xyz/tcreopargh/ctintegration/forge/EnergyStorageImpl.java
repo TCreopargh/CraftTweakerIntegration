@@ -1,10 +1,10 @@
 package xyz.tcreopargh.ctintegration.forge;
 
-public class ImplEnergyStorage implements IEnergyStorage{
+public class EnergyStorageImpl implements IEnergyStorage{
 
     private final net.minecraftforge.energy.IEnergyStorage internal;
 
-    public ImplEnergyStorage(net.minecraftforge.energy.IEnergyStorage storage) {
+    public EnergyStorageImpl(net.minecraftforge.energy.IEnergyStorage storage) {
         this.internal = storage;
     }
 

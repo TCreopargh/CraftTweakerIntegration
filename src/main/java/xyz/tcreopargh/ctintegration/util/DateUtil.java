@@ -6,7 +6,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import xyz.tcreopargh.ctintegration.CTIntegrationMod;
 import xyz.tcreopargh.ctintegration.date.IDate;
-import xyz.tcreopargh.ctintegration.date.ImplDate;
+import xyz.tcreopargh.ctintegration.date.CalendarDate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -19,20 +19,20 @@ public class DateUtil {
 
     @ZenMethod
     public static IDate now() {
-        return new ImplDate();
+        return new CalendarDate();
     }
 
     public static IDate fromDate(Date date) {
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        return new ImplDate(cal);
+        return new CalendarDate(cal);
     }
 
     @ZenMethod
     public static IDate fromTimeInMillis(long timeInMillis) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timeInMillis);
-        return new ImplDate(cal);
+        return new CalendarDate(cal);
     }
 
     @ZenMethod

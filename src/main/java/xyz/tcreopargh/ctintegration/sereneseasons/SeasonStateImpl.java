@@ -1,9 +1,9 @@
 package xyz.tcreopargh.ctintegration.sereneseasons;
 
-public class ImplSeasonState implements ISeasonState {
+public class SeasonStateImpl implements ISeasonState {
     private sereneseasons.api.season.ISeasonState internal;
 
-    public ImplSeasonState(sereneseasons.api.season.ISeasonState seasonState) {
+    public SeasonStateImpl(sereneseasons.api.season.ISeasonState seasonState) {
         this.internal = seasonState;
     }
 

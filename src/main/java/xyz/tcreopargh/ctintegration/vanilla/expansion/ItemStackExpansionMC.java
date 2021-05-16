@@ -1,4 +1,4 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.expansion;
 
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.data.IData;
@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
 import stanhebben.zenscript.annotations.*;
-import xyz.tcreopargh.ctintegration.forge.ImplEnergyStorage;
+import xyz.tcreopargh.ctintegration.forge.EnergyStorageImpl;
 
 @ZenExpansion("crafttweaker.item.IItemStack")
 @ZenRegister
@@ -31,7 +31,7 @@ public class ItemStackExpansionMC {
     public static xyz.tcreopargh.ctintegration.forge.IEnergyStorage getEnergy(IItemStack itemStack) {
         ItemStack mcItemStack = CraftTweakerMC.getItemStack(itemStack);
         IEnergyStorage storage = mcItemStack.getCapability(CapabilityEnergy.ENERGY, null);
-        return new ImplEnergyStorage(storage);
+        return new EnergyStorageImpl(storage);
     }
 
     @ZenMethod

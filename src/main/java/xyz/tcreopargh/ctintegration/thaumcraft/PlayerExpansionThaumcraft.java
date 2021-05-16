@@ -46,6 +46,6 @@ public class PlayerExpansionThaumcraft {
 
     @ZenGetter("thaumcraftKnowledge")
     public static IPlayerKnowledge getThaumcraftKnowledge(IPlayer player) {
-        return new ImplPlayerKnowledge(ThaumcraftCapabilities.getKnowledge(CraftTweakerMC.getPlayer(player)));
+        return new PlayerKnowledgeImpl(ThaumcraftCapabilities.getKnowledge(CraftTweakerMC.getPlayer(player)));
     }
 }

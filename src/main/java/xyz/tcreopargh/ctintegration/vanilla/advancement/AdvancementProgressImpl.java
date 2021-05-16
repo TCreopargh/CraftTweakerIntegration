@@ -1,18 +1,18 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.advancement;
 
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.advancements.CriterionProgress;
 import xyz.tcreopargh.ctintegration.date.IDate;
-import xyz.tcreopargh.ctintegration.date.ImplDate;
+import xyz.tcreopargh.ctintegration.date.CalendarDate;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class ImplAdvancementProgress implements IAdvancementProgress {
+public class AdvancementProgressImpl implements IAdvancementProgress {
     private final AdvancementProgress internal;
 
-    public ImplAdvancementProgress(AdvancementProgress progress) {
+    public AdvancementProgressImpl(AdvancementProgress progress) {
         this.internal = progress;
     }
 
@@ -83,7 +83,7 @@ public class ImplAdvancementProgress implements IAdvancementProgress {
         } else {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(criterionProgress.getObtained());
-            return new ImplDate(calendar);
+            return new CalendarDate(calendar);
         }
     }
 
@@ -92,7 +92,7 @@ public class ImplAdvancementProgress implements IAdvancementProgress {
         Calendar calendar = Calendar.getInstance();
         if (internal.getFirstProgressDate() != null) {
             calendar.setTime(internal.getFirstProgressDate());
-            return new ImplDate(calendar);
+            return new CalendarDate(calendar);
         } else {
             return null;
         }

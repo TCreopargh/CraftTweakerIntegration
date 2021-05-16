@@ -17,7 +17,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 import xyz.tcreopargh.ctintegration.CTIntegrationMod;
 import xyz.tcreopargh.ctintegration.date.IDate;
-import xyz.tcreopargh.ctintegration.date.ImplDate;
+import xyz.tcreopargh.ctintegration.date.CalendarDate;
 
 import java.util.Objects;
 
@@ -93,7 +93,7 @@ public class DifficultyManager {
     public static IDate getLastTimePlayed(IPlayer player) {
         EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
         if (SHPlayerDataHandler.get(mcPlayer) != null) {
-            return new ImplDate(Objects.requireNonNull(SHPlayerDataHandler.get(mcPlayer)).getLastTimePlayed());
+            return new CalendarDate(Objects.requireNonNull(SHPlayerDataHandler.get(mcPlayer)).getLastTimePlayed());
         } else {
             CraftTweakerAPI.logInfo("cannot get last time played because the player's scaling health data is null");
         }

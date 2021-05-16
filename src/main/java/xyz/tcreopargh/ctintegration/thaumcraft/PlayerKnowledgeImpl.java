@@ -5,11 +5,11 @@ import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 
-public class ImplPlayerKnowledge implements IPlayerKnowledge {
+public class PlayerKnowledgeImpl implements IPlayerKnowledge {
 
     thaumcraft.api.capabilities.IPlayerKnowledge internal;
 
-    public ImplPlayerKnowledge(thaumcraft.api.capabilities.IPlayerKnowledge knowledge) {
+    public PlayerKnowledgeImpl(thaumcraft.api.capabilities.IPlayerKnowledge knowledge) {
         this.internal = knowledge;
     }
 

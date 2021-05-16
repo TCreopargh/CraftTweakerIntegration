@@ -17,6 +17,6 @@ public class WorldExpansionSS {
     public static ISeasonState getSeasonState(IWorld world) {
         World mcWorld = CraftTweakerMC.getWorld(world);
         sereneseasons.api.season.ISeasonState state = SeasonHelper.getSeasonState(mcWorld);
-        return new ImplSeasonState(state);
+        return new SeasonStateImpl(state);
     }
 }

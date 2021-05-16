@@ -3,19 +3,19 @@ package xyz.tcreopargh.ctintegration.date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class ImplDate implements IDate {
+public class CalendarDate implements IDate {
 
     Calendar internal;
 
-    public ImplDate() {
+    public CalendarDate() {
         internal = Calendar.getInstance();
     }
 
-    public ImplDate(Calendar calendar) {
+    public CalendarDate(Calendar calendar) {
         internal = calendar;
     }
 
-    public ImplDate(Long timeInMillis) {
+    public CalendarDate(Long timeInMillis) {
         internal = Calendar.getInstance();
         internal.setTimeInMillis(timeInMillis);
     }
@@ -57,7 +57,7 @@ public class ImplDate implements IDate {
         long newTime = this.getTimeInMillis() + with.getTimeInMillis();
         Calendar ret = Calendar.getInstance();
         ret.setTimeInMillis(newTime);
-        return new ImplDate(ret);
+        return new CalendarDate(ret);
     }
 
     @Override

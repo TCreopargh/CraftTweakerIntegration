@@ -1,4 +1,4 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.advancement;
 
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.player.IPlayer;
@@ -10,10 +10,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ImplAdvancement implements IAdvancement {
+public class AdvancementImpl implements IAdvancement {
     private final Advancement internal;
 
-    public ImplAdvancement(Advancement internal) {
+    public AdvancementImpl(Advancement internal) {
         this.internal = internal;
     }
 
@@ -63,7 +63,7 @@ public class ImplAdvancement implements IAdvancement {
     @Override
     public List<IAdvancement> getChildren() {
         List<IAdvancement> children = new ArrayList<>();
-        internal.getChildren().forEach(c -> children.add(new ImplAdvancement(c)));
+        internal.getChildren().forEach(c -> children.add(new AdvancementImpl(c)));
         return children;
     }
 
@@ -79,7 +79,7 @@ public class ImplAdvancement implements IAdvancement {
         if(internal.getParent() == null) {
             return null;
         }
-        return new ImplAdvancement(internal.getParent());
+        return new AdvancementImpl(internal.getParent());
     }
 
     @Override

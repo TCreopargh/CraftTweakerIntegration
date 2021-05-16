@@ -1,4 +1,4 @@
-package xyz.tcreopargh.ctintegration.vanilla;
+package xyz.tcreopargh.ctintegration.vanilla.expansion;
 
 import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
@@ -6,6 +6,7 @@ import crafttweaker.api.player.IPlayer;
 import crafttweaker.api.server.IServer;
 import crafttweaker.api.text.ITextComponent;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenExpansion;
@@ -24,9 +25,7 @@ public class ServerExpansionMC {
     public static IPlayer[] getPlayers(IServer server) {
         MinecraftServer mcServer = CraftTweakerMC.getMCServer(server);
         List<IPlayer> players = new ArrayList<>();
-        mcServer.getPlayerList().getPlayers().forEach(p -> {
-            players.add(CraftTweakerMC.getIPlayer(p));
-        });
+        mcServer.getPlayerList().getPlayers().forEach(p -> players.add(CraftTweakerMC.getIPlayer(p)));
         return players.toArray(new IPlayer[0]);
     }
 
@@ -41,7 +40,7 @@ public class ServerExpansionMC {
     public static IPlayer getPlayerByUsername(IServer server, String name) {
         MinecraftServer mcServer = CraftTweakerMC.getMCServer(server);
         EntityPlayer mcPlayer = mcServer.getPlayerList().getPlayerByUsername(name);
-        if(mcPlayer == null) {
+        if (mcPlayer == null) {
             return null;
         }
         return CraftTweakerMC.getIPlayer(mcPlayer);
@@ -57,6 +56,15 @@ public class ServerExpansionMC {
     public static int getMaxPlayers(IServer server) {
         MinecraftServer mcServer = CraftTweakerMC.getMCServer(server);
         return mcServer.getMaxPlayers();
+    }
+
+    @ZenMethod
+    public static void changePlayerDimension(IServer server, IPlayer player, int dimensionId) {
+        MinecraftServer mcServer = CraftTweakerMC.getMCServer(server);
+        EntityPlayer mcPlayer = CraftTweakerMC.getPlayer(player);
+        if (mcPlayer instanceof EntityPlayerMP) {
+            mcServer.getPlayerList().changePlayerDimension((EntityPlayerMP) mcPlayer, dimensionId);
+        }
     }
 
     @ZenMethod
